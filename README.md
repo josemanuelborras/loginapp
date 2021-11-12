@@ -20,3 +20,7 @@ LIBRERIES:
 FEATURES:
 
 Use config.json con configure server, port, database configuration and passwords for jwt and bcrypt.
+
+To access home route, need to pass "gettoken" key with value "true" in /login once created a successfull registration.
+
+Then pass it into headers as Authorization key with token value.
