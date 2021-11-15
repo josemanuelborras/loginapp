@@ -90,6 +90,34 @@ const getUser = (req, res) =>{
     
 }
 
+const updatUser = (req, res) =>{
+    let id = req.params.id;
+    let update = req.body;
+
+    delete update.password;
+
+    if(id != req.user.sub) return res.sutatus(500).json({ message: 'Permission denied' });
+
+    User.find({ $or: [
+        { email: update.email.toLowerCase()}
+    ]}).exec((err, users) =>{
+        let user_isset = false;
+        users.forEach((user) =>{
+            if(user && user._id != id) user_isset = true;
+        });
+
+        if(user_isset) return res.status(404).json({ message: 'Email already in use '});
+
+        User.findByIdAndUpdate(userId, update, {new: true}, (err, userUpdated) =>{
+            if(err) return res.status(500).json({ message: 'Request Error'});
+
+            if(!userUpdated) return res.status(404).json({ message: 'Error trying to update user' });
+
+            return res.status(200).send({ user: userUpdated });
+        });
+    });
+}
+
 const home = (req, res) =>{
     return res.status(200).json({ message: 'Home' });
 }
@@ -98,5 +126,6 @@ module.exports = {
     newUser,
     loginUser,
     getUser,
+    updatUser,
     home
 }

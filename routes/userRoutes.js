@@ -13,6 +13,8 @@ api.post('/login', UserController.loginUser);
 
 api.get('/user/:id?', UserController.getUser);
 
+api.put('/updateuser/:id', md_auth.ensureAuth, UserController.updatUser);
+
 api.get('/home', md_auth.ensureAuth, UserController.home);
 
 module.exports = api;
