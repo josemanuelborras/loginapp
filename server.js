@@ -1,5 +1,6 @@
 'use strict'
-const configuration = require('./config.json');
+//ENVIROMENT VARIABLES
+const config = require('dotenv').config().parsed;
 
 // DB CONNECTION
 const mongoose = require('mongoose');
@@ -8,16 +9,14 @@ const mongoose = require('mongoose');
 const app = require('./app');
 
 // SERVER CONFIG
-const server = configuration.server;
-const serverUrl = server.url;
-const serverPort = server.port;
+const serverUrl = config.SERVER_URL;
+const serverPort = config.SERVER_PORT;
 
 // DATABASE Config
-const dataBase = configuration.dataBase;
 
-const dataBaseURL = dataBase.url;
-const dataBasePort = dataBase.port;
-const dataBaseName = dataBase.name;
+const dataBaseURL = config.DATABASE_URL;
+const dataBasePort = config.DATABASE_PORT;
+const dataBaseName = config.DATABASE_NAME;
 
 //DB CONNECTION
 mongoose.Promise = global.Promise;

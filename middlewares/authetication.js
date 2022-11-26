@@ -2,8 +2,9 @@
 
 const jwt = require('jwt-simple');
 const moment = require('moment');
-const configs = require('../config.json');
-const secret = configs.pass;
+const config = require('dotenv').config().parsed;
+
+const secret = config.PASS;
 
 exports.ensureAuth = (req, res, next) => {
 	if(!req.headers.authorization){
