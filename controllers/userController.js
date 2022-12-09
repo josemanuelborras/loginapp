@@ -78,7 +78,7 @@ const loginUser = (req, res) => {
 
 const getUser = (req, res) =>{
 
-    let id = req.body.id ?? req.query.id;
+    let id = req.query.id;
 
     if(!id) return res.status(404).json({ message: 'Must provide a User ID ' });
 
@@ -100,7 +100,7 @@ const updatUser = (req, res) =>{
 
     delete update.password;
 
-    if(id != req.user.sub) return res.sutatus(500).json({ message: 'Permission denied' });
+    if(id != req.user.sub) return res.status(500).json({ message: 'Permission denied' });
 
     User.find({ $or: [
         { email: update.email.toLowerCase()}
