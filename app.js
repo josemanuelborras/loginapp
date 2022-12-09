@@ -8,6 +8,7 @@ const app = express();
 
 // ROUTES CONFIG
 const user_routes = require('./routes/userRoutes');
+const index_routes = require('./routes/indexRoutes');
 
 // MIDDLEWARES
 app.use(express.urlencoded({ extended: true }));
@@ -25,8 +26,11 @@ app.use((req, res, next) => {
 
 // ROUTES
 const route = '/';
+const routes = [user_routes, index_routes];
 
-app.use(route, user_routes);
+app.use(route, routes.map((routes)=> {
+    return routes;
+}));
 
 // EXPORTS
 module.exports = app;
