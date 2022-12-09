@@ -5,10 +5,6 @@ const jwt = require('../services/jwt');
 
 const User = require('../models/userModel');
 
-const home = (req, res) =>{
-    return res.status(200).json({ message: 'Home' });
-}
-
 const newUser = (req, res) => {
     let params = req.body;
 
@@ -126,6 +122,5 @@ module.exports = {
     newUser,
     loginUser,
     getUser,
-    updatUser,
-    home
+    updatUser
 }
