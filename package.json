@@ -1,7 +1,7 @@
 {
-  "name": "loginapp",
+  "name": "bookstore-back",
   "version": "1.0.0",
-  "description": "Login api with nodejs",
+  "description": "Bookstore api with nodejs",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.17.1",
     "jwt-simple": "^0.5.6",
